@@ -104,3 +104,12 @@ Deno.test("throws error when input is not a number", () => {
   // Assert
   assertThrows(act, Error, "non-numeric numerator/denominator");
 });
+
+Deno.test("throws error when denominator is 0", () => {
+  // Arrange
+  const input = "5/0";
+  // Act
+  const act = () => Fraction.parse(input);
+  // Assert
+  assertThrows(act, Error, "not possible");
+});

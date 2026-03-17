@@ -54,6 +54,9 @@ export class Fraction {
     if (Number.isNaN(numerator) || Number.isNaN(denominator)) {
       throw new Error(`non-numeric numerator/denominator`);
     }
+    if (denominator === 0) {
+      throw new Error("not possible");
+    }
     return new Fraction(numerator, denominator);
   }
 }
