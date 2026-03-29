@@ -8,3 +8,20 @@ export function gcdBruteForce(a: number, b: number): number {
   }
   return 1;
 }
+
+export function gcdEuclid(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+
+  if (x === 0) return y;
+  if (y === 0) return x;
+
+  while (x !== y) {
+    if (x > y) {
+      x = x - y;
+    } else {
+      y = y - x;
+    }
+  }
+  return x;
+}

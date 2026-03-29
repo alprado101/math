@@ -1,5 +1,5 @@
 import { roundTo } from "./utils.ts";
-import { gcdBruteForce } from "./gdc.ts";
+import { gcdEuclid } from "./gdc.ts";
 
 export class Fraction {
   constructor(
@@ -13,6 +13,8 @@ export class Fraction {
     const newDenominator = this.denominator * other.denominator;
     this.numerator = newNumerator;
     this.denominator = newDenominator;
+
+    return new Fraction(this.numerator, this.denominator);
   }
 
   public subtract(other: Fraction) {
@@ -21,6 +23,8 @@ export class Fraction {
     const newDenominator = this.denominator * other.denominator;
     this.numerator = newNumerator;
     this.denominator = newDenominator;
+
+    return new Fraction(this.numerator, this.denominator);
   }
 
   public multiply(other: Fraction) {
@@ -28,6 +32,8 @@ export class Fraction {
     const newDenominator = this.denominator * other.denominator;
     this.numerator = newNumerator;
     this.denominator = newDenominator;
+
+    return new Fraction(this.numerator, this.denominator);
   }
 
   public divide(other: Fraction) {
@@ -35,6 +41,8 @@ export class Fraction {
     const newDenominator = this.denominator * other.numerator;
     this.numerator = newNumerator;
     this.denominator = newDenominator;
+
+    return new Fraction(this.numerator, this.denominator);
   }
 
   public toFloat(precision: number): number {
@@ -62,7 +70,7 @@ export class Fraction {
   }
 
   public cancel(): Fraction {
-    const common = gcdBruteForce(this.numerator, this.denominator);
+    const common = gcdEuclid(this.numerator, this.denominator);
 
     return new Fraction(this.numerator / common, this.denominator / common);
   }
