@@ -1,9 +1,10 @@
 import { roundTo } from "./utils.ts";
+import { gcdBruteForce } from "./gdc.ts";
 
 export class Fraction {
   constructor(
-    private numerator: number,
-    private denominator: number,
+    public numerator: number,
+    public denominator: number,
   ) {}
 
   public add(other: Fraction) {
@@ -58,5 +59,11 @@ export class Fraction {
       throw new Error("not possible");
     }
     return new Fraction(numerator, denominator);
+  }
+
+  public cancel(): Fraction {
+    const common = gcdBruteForce(this.numerator, this.denominator);
+
+    return new Fraction(this.numerator / common, this.denominator / common);
   }
 }
